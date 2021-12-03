@@ -76,4 +76,4 @@ if found:
 
 #post the text!
 print(f"Posting: {completion_text}")
-#api.update_status(completion_text)
+api.update_status(completion_text)
