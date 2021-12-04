@@ -138,3 +138,4 @@ dmypy.json
 cython_debug/
 
 .vscode
+top_1000_users.txt

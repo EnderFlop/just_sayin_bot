@@ -52,13 +52,14 @@ def follow_users():
 follow_users()
 
 #get tweets and format them into a prompt
-tweet_list = api.home_timeline(count=20)
+tweet_list = api.home_timeline(count=10, tweet_mode="extended")
 string = ""
 #skip retweets
 for index, tweet in enumerate(tweet_list):
-  if tweet.text[0:2] == "RT":
-    continue
-  string += f"{index+1}. {tweet.text}\n"
+  if 'retweeted_status' in tweet._json:
+    string += f"{index+1}. {tweet._json['retweeted_status']['full_text']}\n"
+  else:
+    string += f"{index+1}. {tweet.full_text}\n"
 
 #request a text completion from openai
 completion = openai.Completion.create(engine = "davinci", temperature = TEMPERATURE,  prompt = string, max_tokens = 800, stop = "\n")
