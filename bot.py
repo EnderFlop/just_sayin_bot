@@ -52,7 +52,7 @@ def follow_users():
 follow_users()
 
 #get tweets and format them into a prompt
-tweet_list = api.home_timeline(count=10, tweet_mode="extended")
+tweet_list = api.home_timeline(count=5, tweet_mode="extended")
 string = ""
 #skip retweets
 for index, tweet in enumerate(tweet_list):
@@ -62,7 +62,7 @@ for index, tweet in enumerate(tweet_list):
     string += f"{index+1}. {tweet.full_text}\n"
 
 #request a text completion from openai
-completion = openai.Completion.create(engine = "davinci", temperature = TEMPERATURE,  prompt = string, max_tokens = 800, stop = "\n")
+completion = openai.Completion.create(engine = "curie", temperature = TEMPERATURE,  prompt = string, max_tokens = 800, stop = "\n")
 completion_text = completion.choices[0].text
 
 #if the completion contains a "4. " or "21. " etc at the beginning because of the prompt format, remove it
