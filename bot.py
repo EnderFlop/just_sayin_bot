@@ -49,7 +49,8 @@ def follow_users():
       print("User Not Found. Skipping")
 
 #isolated into a function to make it easy to skip during testing.
-follow_users()
+#commented out because all users have been followed.
+#follow_users()
 
 #get tweets and format them into a prompt
 tweet_list = api.home_timeline(count=5, tweet_mode="extended")
